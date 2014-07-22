@@ -1,0 +1,16 @@
+@(activeFilter: String="")(implicit lang:Lang)
+@import uk.gov.dvla.domain.FleetFilter
+
+<div class="header-proposition">
+    <div class="content">
+        <a href="#proposition-links" class="js-header-toggle menu">Menu</a>
+        <nav id="proposition-menu">
+            <a href="#" id="proposition-name">@Messages("menu.view.vehicle.record")</a>
+            <ul id="proposition-links">
+                <li><a href="@routes.ViewFleetRecords.viewFleet(1)" @if(activeFilter == FleetFilter.ALL){class="active"}>@Messages("menu.view.all.fleet.records")</a></li>
+                <li><a href="@routes.Search.searchForm" class="">@Messages("menu.search.again")</a></li>
+                <li><a href="@routes.Application.logout" class="">@Messages("menu.logout")</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>

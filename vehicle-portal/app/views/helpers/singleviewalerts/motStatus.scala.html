@@ -1,0 +1,13 @@
+@(vehicle: model.VehicleDetailsViewModel)
+
+<div class="grid grid-1-2">
+    <div class="inner-block">
+        <div id="mot-alert-colour" class="alert @if(vehicle.isMotCurrent) {success-alert} else {danger-alert}" >
+            <div class="data alert-body">
+                <h2 id="mot-alert-title" class="bold-medium">@if(vehicle.isMotCurrent) {&#10004} else {&#10008}; MOT</h2>
+                <p id="mot-alert-message" class="bold-xsmall">@Messages(vehicle.motMessage, vehicle.motExpiry)</p>
+            </div>
+        </div>
+    </div>
+</div>
+

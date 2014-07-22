@@ -1,0 +1,12 @@
+#global-header .header-proposition #proposition-links li a.active {
+    color: #1D8FEB;
+}
+.page-header {
+    border-bottom: 5px solid #005EA5;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.form-control, .form-group ul.form-group {
+    margin-bottom: 15px;
+}

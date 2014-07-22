@@ -1,0 +1,11 @@
+.table-column {
+    margin-left: 15px;
+}
+article tr td {
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+article tr:nth-child(even) td {
+	background-color: #F8F8F8;
+}

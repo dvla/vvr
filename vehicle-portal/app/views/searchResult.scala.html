@@ -1,0 +1,75 @@
+@(vehicle: model.VehicleDetailsViewModel, backToFleetPage: Int, filterSearchData: model.VehicleRefinedSearchData)
+@import common.PortalDateFormatter
+@import utils.StringExtentions._
+
+@main(Messages("application.portal.title"), helpers.header()) {
+<main id="wrapper" role="main">
+    <div id="content">
+        <header class="page-header group">
+            <div class="hgroup">
+                <h1>@Messages("vsv.fleet.vehicle.record")</h1>
+                <h2 class="subtitle">@Messages("vsv.fleet.reference.number") @vehicle.fleetNumber</h2>
+            </div>
+        </header>
+        <!-- Alert START -->
+        <div class="alert-wrapper alert-wrapper-full-width single-view-alert"></div>
+
+        <div class="grid-wrapper alert-wrapper single-view-alert">
+            @helpers.singleviewalerts.taxStatus(vehicle)
+            @helpers.singleviewalerts.motStatus(vehicle)
+        </div>
+        <!-- Alert END -->
+
+        <article class="inner-block">
+            <!--<form action="" method="post" class="">
+                <div class="form-group">
+                    <button type="submit" name="" value="Search" onclick="" id="" class="button">Return to previous page</button>
+                </div>
+            </form>-->
+            @if(backToFleetPage > 0) {
+            <p><a href="@vehicle.backUrl(backToFleetPage, filterSearchData)">Back</a></p>
+            }
+            <div>
+                <ul class="ul-data">
+                    @if(vehicle.registrationNumber.isDefined){<li><span>@Messages("vsv.registration.number")</span><strong>@vehicle.registrationNumber</strong></li>}
+                    @if(vehicle.make.isDefined){<li><span>@Messages("vsv.vehicle.make")</span><strong>@vehicle.make</strong></li>}
+                    @if(vehicle.firstRegistration.isDefined){<li><span>@Messages("vsv.date.of.first.registration")</span><strong>@vehicle.firstRegistration</strong></li>}
+                    @if(vehicle.firstRegistrationUk.isDefined){<li><span>@Messages("vsv.vehicle.first.registration.uk")</span><strong>@vehicle.firstRegistrationUk</strong></li>}
+                    @if(vehicle.taxClass.isDefined){<li><span>@Messages("vsv.tax.class")</span><strong>@vehicle.taxClass</strong></li>}
+                    @if(vehicle.cylinderCapacity.isDefined){<li><span>@Messages("vsv.cylinder.capacity")</span><strong>@vehicle.cylinderCapacity</strong></li>}
+                    @if(vehicle.co2Emissions.isDefined){<li><span>@Messages("vsv.co2.emissions")</span><strong>@vehicle.co2Emissions</strong></li>}
+                    @if(vehicle.fuelType.isDefined){<li><span>@Messages("vsv.fuel.type")</span><strong>@vehicle.fuelType</strong></li>}
+                    @if(vehicle.taxBand.isDefined){<li><span>@Messages("vsv.tax.band")</span><strong>@vehicle.taxBand</strong></li>}
+                    @if(vehicle.colour.isDefined){<li><span>@Messages("vsv.vehicle.colour")</span><strong>@vehicle.colour</strong></li>}
+                    @if(vehicle.bodyType.isDefined){<li><span>@Messages("vsv.vehicle.body.type")</span><strong>@vehicle.bodyType</strong></li>}
+                    @if(vehicle.revenueWeight.isDefined){<li><span>@Messages("vsv.vehicle.revenue.weight")</span><strong>@vehicle.revenueWeight</strong></li>}
+                    @if(vehicle.massInService.isDefined){<li><span>@Messages("vsv.vehicle.mass.in.service")</span><strong>@vehicle.massInService</strong></li>}
+                    @if(vehicle.numberOfSeats.isDefined){<li><span>@Messages("vsv.vehicle.number.of.seats")</span><strong>@vehicle.numberOfSeats</strong></li>}
+                    @if(vehicle.standingCapacity.isDefined){<li><span>@Messages("vsv.vehicle.standing.capacity")</span><strong>@vehicle.standingCapacity</strong></li>}
+                    @if(vehicle.wheelplan.isDefined){<li><span>@Messages("vsv.vehicle.wheelplan")</span><strong>@vehicle.wheelplan</strong></li>}
+                    @if(vehicle.vehicleCategory.isDefined){<li><span>@Messages("vsv.vehicle.vehicle.category")</span><strong>@vehicle.vehicleCategory</strong></li>}
+                    <li><span>@Messages("vsv.model")</span><strong>@vehicle.model</strong></li>
+                    @if(vehicle.vin.isDefined){<li><span>@Messages("vsv.vin")</span><strong>@vehicle.vin</strong></li>}
+                    @if(vehicle.lastV5.isDefined){<li><span>@Messages("vsv.last.v5")</span><strong>@vehicle.lastV5</strong></li>}
+                    <li><span>@Messages("vsv.engine.number")</span><strong>@vehicle.engineNumber</strong></li>
+                </ul>
+            </div>
+            <div class="text">
+                <p>@Messages("vsv.please.be.aware.that...")</p>
+                <p>@Messages("vsv.if.you.think.that.the.details.on.the.vehicle.record.are.incorrect.please.write.to"):</p>
+                <p>@Messages("vsv.addr1")<br>
+                    @Messages("vsv.addr2")<br>
+                    @Messages("vsv.addr3")<br>
+                    @Messages("vsv.addr4")<br>
+                <p>@Messages("vsv.please.include.the.incorrect.V5C.registration.certificate.for.amendment.")</p>
+                <p>
+                    <a href="@routes.Application.logout" onclick="" id="" class="button">@Messages("menu.logout")</a>
+                </p>
+            </div>
+        </article>
+        <!-- / .inner-block -->
+    </div>
+
+    <!-- / #content -->
+</main>
+}

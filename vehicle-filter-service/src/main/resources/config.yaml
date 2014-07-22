@@ -1,0 +1,60 @@
+http:
+ port: 9300
+ adminPort: 9301
+ maxThreads: 500
+ requestLog:
+   console:
+     enabled: false
+
+httpClient:
+  maxThreads: 500
+  timeout: 2s
+  connectionTimeout: 2s
+
+baseUrl: http://localhost:9200
+
+
+logging:
+  level: DEBUG
+
+  loggers:
+     org.eclipse.jetty: ERROR
+     org.apache.http: ERROR
+     com.yammer.metrics: ERROR
+
+  console:
+    enabled: true
+
+    # Do not display log statements below this threshold to stdout.
+    threshold: TRACE
+
+  file:
+    # If true, write log statements to a file.
+    enabled: true
+
+
+    logFormat: "%date %level [%thread] %logger [%file:%line] %msg%n%ex.%n"
+
+    # The file to which current statements will be logged.
+    currentLogFilename: ./logs/vehicle-filter-service.log
+
+    # When the log file rotates, the archived log will be renamed to this and gzipped. The
+    # %d is replaced with the previous day (yyyy-MM-dd). Custom rolling windows can be created
+    # by passing a SimpleDateFormat-compatible format as an argument: "%d{yyyy-MM-dd-hh}".
+    archivedLogFilenamePattern: ./logs/vehicle-filter-service-%d.log.gz
+
+    # The number of archived files to keep.
+    archivedFileCount: 30
+
+    # The timezone used to format dates. HINT: USE THE DEFAULT, UTC.
+    timeZone: UTC
+
+logstashLogbackEncoderConfiguration:
+  # If true, log requests to a file (default is false)
+  enabled: true
+  includeCallerInfo: true
+  currentLogFilename: ./logs/vehicle-filter-service.json
+  archive: true
+  archivedLogFilenamePattern: ./logs/vehicle-filter-service-%d.json.gz
+  archivedFileCount: 5
+

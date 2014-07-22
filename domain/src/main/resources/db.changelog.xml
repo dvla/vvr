@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet author="andyn" id="fix-liquibase-0">
+        <sql>
+            DROP SCHEMA IF EXISTS enquiry CASCADE;
+            CREATE SCHEMA enquiry;
+        </sql>
+        <rollback>
+            <sql>
+                DROP SCHEMA enquiry;
+            </sql>
+        </rollback>
+    </changeSet>
+    <changeSet author="andyn (generated)" id="1403693209844-1">
+        <createTable catalogName="vehicles" schemaName="enquiry" tableName="body_type">
+            <column name="code" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="andyn (generated)" id="1403693209844-2">
+        <createTable catalogName="vehicles" schemaName="enquiry" tableName="fuel_type">
+            <column name="code" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="andyn (generated)" id="1403693209844-3">
+        <createTable catalogName="vehicles" schemaName="enquiry" tableName="make">
+            <column name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="make_pkey"/>
+            </column>
+            <column name="make" type="TEXT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="andyn (generated)" id="1403693209844-4">
+        <createTable catalogName="vehicles" schemaName="enquiry" tableName="tax_class">
+            <column name="id" type="INT8">
+                <constraints nullable="false"/>
+            </column>
+            <column name="code" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="TEXT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="andyn (generated)" id="1403693209844-5">
+        <createTable catalogName="vehicles" schemaName="enquiry" tableName="vehicle">
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="vehicle_pkey"/>
+            </column>
+            <column name="registration_number" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="make" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="liability" type="TIMESTAMPTZ"/>
+            <column name="first_registration" type="TIMESTAMPTZ">
+                <constraints nullable="false"/>
+            </column>
+            <column name="fleet_number" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cylinder_capacity" type="INT4"/>
+            <column name="co2_emissions" type="INT4"/>
+            <column name="fuel_type" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="colour" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="mass_in_service" type="INT4"/>
+            <column name="number_of_seats" type="INT4"/>
+            <column name="standing_capacity" type="INT4"/>
+            <column name="revenue_weight" type="INT4"/>
+            <column name="wheelplan_code" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_registration_uk" type="TIMESTAMPTZ"/>
+            <column name="vehicle_category" type="TEXT"/>
+            <column name="body_type_code" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="licensing_type" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="mot_expiry" type="TIMESTAMPTZ"/>
+            <column name="tax_class_id" type="INT8">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="andyn (generated)" id="1403693209844-6">
+        <createTable catalogName="vehicles" schemaName="enquiry" tableName="wheel_plan">
+            <column name="code" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="TEXT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="andyn (generated)" id="1403693209844-7">
+        <addPrimaryKey catalogName="vehicles" columnNames="id" constraintName="tax_class_pkey" schemaName="enquiry" tableName="tax_class"/>
+    </changeSet>
+    <changeSet author="andyn (generated)" id="1403693209844-8">
+        <addUniqueConstraint catalogName="vehicles" columnNames="registration_number" constraintName="vehicle_registration_number_key" deferrable="false" disabled="false" initiallyDeferred="false" schemaName="enquiry" tableName="vehicle"/>
+    </changeSet>
+    <changeSet author="andyn" id="fix-liquibase-1">
+        <sql>
+            GRANT USAGE ON SCHEMA enquiry TO vehiclesenquiry;
+            GRANT SELECT ON TABLE enquiry.body_type TO vehiclesenquiry;
+            GRANT SELECT ON TABLE enquiry.fuel_type TO vehiclesenquiry;
+            GRANT SELECT ON TABLE enquiry.make TO vehiclesenquiry;
+            GRANT SELECT ON TABLE enquiry.tax_class TO vehiclesenquiry;
+            GRANT SELECT ON TABLE enquiry.vehicle TO vehiclesenquiry;
+            GRANT SELECT ON TABLE enquiry.wheel_plan TO vehiclesenquiry;
+        </sql>
+        <rollback/>
+    </changeSet>
+    <changeSet author="rhisiarta" id="US1121">
+        <addColumn schemaName="enquiry" tableName="vehicle">
+            <column name="model" type="TEXT"/>
+            <column name="vin" type="TEXT"/>
+            <column name="last_v5" type="TIMESTAMPTZ"/>
+            <column name="engine_number" type="TEXT"/>
+        </addColumn>
+        <rollback>
+            <dropColumn schemaName="enquiry" tableName="vehicle" columnName="model"/>
+            <dropColumn schemaName="enquiry" tableName="vehicle" columnName="vin"/>
+            <dropColumn schemaName="enquiry" tableName="vehicle" columnName="last_v5"/>
+            <dropColumn schemaName="enquiry" tableName="vehicle" columnName="engine_number"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

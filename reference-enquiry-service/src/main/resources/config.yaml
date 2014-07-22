@@ -1,0 +1,86 @@
+database:
+  # the name of your JDBC driver
+  driverClass: org.postgresql.Driver
+
+  # the username
+  user: vehiclesenquiry
+
+  # the password
+  password: 1Password2
+
+  # the JDBC URL
+  url: jdbc:postgresql://localhost/vehicles
+
+  # any properties specific to your JDBC driver:
+  properties:
+    charSet: UTF-8
+
+  # the maximum amount of time to wait on an empty pool before throwing an exception
+  maxWaitForConnection: 1s
+
+  # the SQL query to run when validating a connection's liveness
+  validationQuery: "/* MyService Health Check */ SELECT 1"
+
+  # the minimum number of connections to keep open
+  minSize: 8
+
+  # the maximum number of connections to keep open
+  maxSize: 32
+
+  # whether or not idle connections should be validated
+  checkConnectionWhileIdle: false
+
+  # how long a connection must be held before it can be validated
+  checkConnectionHealthWhenIdleFor: 10s
+
+  # the maximum lifetime of an idle connection
+  closeConnectionIfIdleFor: 1 minute
+
+http:
+
+  port: 9400
+
+  adminPort: 9401
+
+logging:
+  level: DEBUG
+
+  loggers:
+     org.eclipse.jetty: ERROR
+     org.apache.http: ERROR
+     com.yammer.metrics: ERROR
+
+  console:
+    enabled: true
+
+    # Do not display log statements below this threshold to stdout.
+    threshold: TRACE
+
+  file:
+    # If true, write log statements to a file.
+    enabled: true
+
+    logFormat: "%date %level [%thread] %logger [%file:%line] %msg%n%ex.%n"
+
+    # The file to which current statements will be logged.
+    currentLogFilename: ./logs/vehicle-enquiry-service.log
+
+    # When the log file rotates, the archived log will be renamed to this and gzipped. The
+    # %d is replaced with the previous day (yyyy-MM-dd). Custom rolling windows can be created
+    # by passing a SimpleDateFormat-compatible format as an argument: "%d{yyyy-MM-dd-hh}".
+    archivedLogFilenamePattern: ./logs/vehicle-enquiry-service-%d.log.gz
+
+    # The number of archived files to keep.
+    archivedFileCount: 30
+
+    # The timezone used to format dates. HINT: USE THE DEFAULT, UTC.
+    timeZone: UTC
+
+logstashLogbackEncoderConfiguration:
+  # If true, log requests to a file (default is false)
+  enabled: true
+  includeCallerInfo: true
+  currentLogFilename: ./logs/vehicle-enquiry-service.json
+  archive: true
+  archivedLogFilenamePattern: ./logs/vehicle-enquiry-service-%d.json.gz
+  archivedFileCount: 5

@@ -1,0 +1,75 @@
+@(makes: String, searchForm: Form[model.VehicleData], errors: List[String] = Nil)
+
+@scripts= {
+<script type='text/javascript' src='@routes.Assets.at("frontend/app/app.js")'></script>
+<script type='text/javascript' src='@routes.Assets.at("frontend/app/dateRangeFields.js")'></script>
+<script type='text/javascript' src='@routes.Assets.at("frontend/app/vehicleFormValidatorService.js")'></script>
+<script type='text/javascript' src='@routes.Assets.at("frontend/app/messagesService.js")'></script>
+<script type='text/javascript' src='@routes.Assets.at("javascripts/typeahead.changed.min.js")'></script>
+<script type="text/javascript">
+     $('#makeLookup').typeahead({
+        name: 'VehicleMakes',
+        limit: '10',
+        local: @{Html(makes)}
+     });   
+</script>
+}
+
+@insideHeader = {
+}
+
+@main(Messages("application.portal.title"), insideHeader, scripts) {
+<main id="wrapper" role="main" ng-app="vehicle-portal">
+    <div id="content">
+        <div id="global-breadcrumb" class="header-context">
+            <nav role="navigation">
+                <ol class="group">
+                    <li><a href="https://www.gov.uk/service-manual/">@Messages("breadcrumb.home")</a></li>
+                    <li><a href="#">@Messages("breadcrumb.driving.and.transport")</a></li>
+                    <li><a href="#">@Messages("breadcrumb.view.vehicle.record.fleet.enquiry")</a></li>
+                </ol>
+            </nav>
+        </div>
+        <header class="page-header group">
+            <div class="hgroup">
+                <h1>@Messages("vvrform.view.vehicle.record")</h1>
+                <h2 class="subtitle">@Messages("vvrform.fleet.management.vehicle.service")</h2>
+            </div>
+        </header>
+        <div class="inner-block">
+            <div class="text">
+                <p class="lead">@Messages("vvrform.to.make.an.enquiry.enter...")</p>
+                <form action="" method="post" class="form-group" ng-controller="form-validator-controller" ng-submit="submit($event)">
+                    @if(!errors.isEmpty) {
+                    <div class="validation-summary">
+                        <h2>@Messages(errors.head)</h2>
+                        <ul>
+                            <li>@Messages("vvrform.please.resubmit.your.vehicle.enquiry")</li>
+                        </ul>
+                    </div>
+                    }
+                    @if(!searchForm.errors.isEmpty) {
+                    <div class="validation-summary" id="validationFieldErrorSummary">
+                        <h2>@Messages("vvrform.please.check.the.form")</h2>
+                        <ul>
+                            @* we want to take only the first trigger validation rule, ommiting the rest*@
+                            @utils.FormUtils.getFirstErrors(searchForm.errors).map{ e=>
+                            <li><a href="#@{e.key}Error">@Messages(e.message)</a></li>
+                            }
+                        </ul>
+                    </div>
+                    }
+                    @helpers.validateField(searchForm, "fleetNumber", "vvrform.fleet.number", "fleetNumber")
+                    @helpers.validateField(searchForm, "registrationNumber", "vvrform.registration.number", "registrationNumber")
+                    @helpers.validateField(searchForm, "vehicleMake", "vvrform.vehicle.make", "makeLookup")
+                    <div class="form">
+                        <button type="submit" name="" value="Search" onclick="" id="MainContent_butSearch" class="button">@Messages("vvrform.search")</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- / .inner-block -->
+    </div>
+    <!-- / #content -->
+</main>
+}

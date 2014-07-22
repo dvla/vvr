@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>domain</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <parent>
+        <groupId>iep-vvr</groupId>
+        <artifactId>iep-vvr</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <properties>
+        <db.username>postgres</db.username>
+        <db.password>postgres</db.password>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <version>3.1.1</version>
+                <configuration>
+                    <propertyFile>src/main/resources/liquibase.properties</propertyFile>
+                    <username>${db.username}</username>
+                    <password>${db.password}</password>
+                    <rollbackCount>1</rollbackCount>
+                    <contexts>${liquibase.contexts}</contexts>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.postgresql</groupId>
+                        <artifactId>postgresql</artifactId>
+                        <version>9.3-1100-jdbc41</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <id>liquibase-update</id>
+                        <phase>${liquibase.phase}</phase>
+                        <goals>
+                            <goal>update</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.typesafe.play</groupId>
+            <artifactId>play-json_2.10</artifactId>
+            <version>2.2.3</version>
+        </dependency>
+    </dependencies>
+
+</project>

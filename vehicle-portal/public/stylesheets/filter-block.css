@@ -1,0 +1,101 @@
+.filter-block .form-label, .filter-block .form-hint, .filter-block .form-control, .filter-block .clear-selected{
+    font-size: 16px;
+}
+.filter-block .form-label {
+    padding-top: 15px;
+}
+.filter-block {
+    margin-right: 15px;
+}
+@media (max-width: 640px) {
+.filter-block {
+    margin-right: 0;
+}
+}
+.filter-block .heading-medium {
+    margin-top: 0;
+}
+.filter-group-background {
+    background-color: #DEE0E2;
+    margin-bottom: 15px;
+    padding: 0 15px;
+}
+.filter-block:after, .filter-group-background:after, .form-group-header:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.filter-group-background .form-group {
+    margin-bottom: 0;
+}
+.clear-selected {
+    cursor: pointer;
+    margin-top: 15px;
+}
+.clear-selected-button {
+    margin-top: 10px;
+}
+.clear-selected.js-hidden {
+    left: -9999em;
+    position: relative;
+    height: 0;
+    overflow: hidden;
+}
+@media (max-width: 640px) {
+.filter-block .form-group label .pull-left {
+    float: left;
+    clear: none;
+}
+.filter-block .clear-selected.pull-right {
+    float: right;
+    clear: none;
+}
+}
+.date-from-to .form-group {
+    width: 40px;
+    float: left;
+    margin-right: 15px;
+    clear: none;
+}
+.date-from-to .form-group-year {
+    width: 60px;
+}
+.date-from-to label, p .form-hint  {
+    font-size: 14px;
+    display: block;
+    margin-bottom: 5px;
+}
+.filter-block .form-group input.form-control, .filter-block .date-from-to .form-group input {
+    width: 100%;
+}
+@media (max-width: 640px) {
+.filter-block .grid-1-2 {
+    width: 50%;
+}
+}
+.filter-block ul.form-group {
+    margin-top: 0;
+}
+.filter-block ul.form-group li:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.filter-block ul label, ul select {
+	font-size: 14px;
+	font-weight: normal;
+}
+.filter-block .filter-proposition label.block-label {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 10px 15px 8px 25px
+}
+
+.filter-block .filter-proposition .block-label input {
+    font-size: 16px;
+    top: 6px;
+    left: 0;
+}
+.filter-block .filter-proposition .block-label:hover {
+    border-color: #DEE0E2;
+}

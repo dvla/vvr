@@ -1,0 +1,24 @@
+{
+  "name": "form-validator",
+  "version": "0.0.0",
+  "description": "Angular app for generic form validation",
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-exit": "^1.0.0",
+    "grunt-karma": "^0.8.3",
+    "karma": "^0.12.16",
+    "karma-jasmine": "^0.1.5",
+    "karma-junit-reporter": "^0.2.2",
+    "karma-phantomjs-launcher": "^0.1.4"
+  }
+}

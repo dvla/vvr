@@ -1,0 +1,44 @@
+@(fleet: model.FleetViewModel)
+@import forms.VehicleRefinedSearchForm
+
+<h3 class="heading-medium">Filter my results</h3>
+<form action="@fleet.filterFormUrl" method="post" class="form-group" ng-controller="form-validator-controller" ng-submit="submit($event)">
+    @if(!fleet.params.form.errors.isEmpty) {
+    <div class="filter-group-background">
+        <div class="validation-summary" id="validationFieldErrorSummary">
+            <h2>@Messages("vvrform.please.check.the.form")</h2>
+            <ul>
+                @* we want to take only the first trigger validation rule, ommiting the rest*@
+                @fleet.consolidateSearchFilterErrors.map{ e=>
+                <li><a href="#@{e.key}Error">@Messages(e.message)</a></li>
+                }
+            </ul>
+        </div>
+    </div>
+    }
+
+    @helpers.validateFieldFleet(fleet.fieldViewModel(VehicleRefinedSearchForm.REGISTRATION_PARAM, "vvrform.registration.number"))
+    @helpers.validateFieldFleet(fleet.fieldViewModel(VehicleRefinedSearchForm.MAKE_PARAM, "vvrform.vehicle.make"))
+
+    <!-- Tax Class filter  Start - Need to create a partial for the Tax Class filter-->
+    <div class="filter-group-background">
+        <div class="form-group">
+            <div class="form-group-header">
+                <label class="form-label pull-left" for="taxClass">Tax class</label>
+                <a class="clear-selected pull-right js-hidden">clear</a></div>
+            <input type="text" class="form-control" id="taxClass" style="text-transform: uppercase;">
+        </div>
+    </div>
+    <!-- Tax Class filter  End -->
+
+    @helpers.dateFieldFleet(fleet.fieldViewModel(VehicleRefinedSearchForm.LIABILITY_PARAM, "vvrform.date.of.liability", List("expired", "sorn")))
+
+    @helpers.dateRangeFieldFleet(fleet.fieldViewModel(VehicleRefinedSearchForm.FIRST_REGISTRATION_PARAM, "vvrform.date.of.first.registration"))
+
+    @helpers.dateRangeFieldFleet(fleet.fieldViewModel(VehicleRefinedSearchForm.MOT_PARAM, "vvrform.mot", List("expired", "noDateHeld")))
+
+    <div class="form">
+        <button type="submit" name="" value="Search" onclick="" id="MainContent_butSearch" class="button">Update results</button>
+        <a class="clear-selected clear-selected-button pull-right js-hidden" clear-form>clear all</a>
+    </div>
+</form>

@@ -1,0 +1,131 @@
+.entries {
+    margin-bottom: 15px;
+    border-bottom: #BFC1C3 2px solid;
+}
+.entries h2, .entries p {
+    display: inline-block;
+}
+.data.entries h2.bold-xlarge {
+    line-height: 1em;
+}
+.table-control {
+    font-size: 16px;
+	margin-top: 0;
+	overflow: hidden;
+	text-align: center;
+}
+.table-control.table-footer {
+	margin-top: 30px;
+}
+@media (max-width:849px) {
+.table-control .pull-left {
+    clear: none;
+}
+.table-control .pull-right {
+    float: right;
+    clear: none;
+}
+}
+.table-control a:hover .link {
+	text-decoration: underline;
+}
+.table-control .arrow {
+	padding: 0;
+}
+.table-control .arrow span.contain {
+	display: inline-block;
+	padding-top: 12px;
+}
+.table-control .link {
+	display: block;
+	width: 100%;
+}
+.table-control .last {
+	float: right;
+}
+.table-control .last span.contain {
+	float: right
+}
+.table-control .last .link {
+	display: inline-block;
+	margin-right: 2%;
+	text-align: right;
+	text-decoration: underline;
+}
+.table-control .last .arrow-button {
+	display: inline-block;
+	float: right;
+	font-size: 200%;
+	padding-left: 10px;
+}
+.table-control .first {
+	float: left;
+}
+.table-control .first span.contain {
+	float: left;
+}
+.table-control .first .link {
+	display: inline-block;
+	margin-left: 2%;
+	text-align: left;
+	text-decoration: underline;
+}
+.table-control .first .arrow-button {
+	display: inline-block;
+	float: left;
+	font-size: 200%;
+    padding-right: 10px;
+}
+/* Pagination START */
+.pagination {
+	margin: 0 auto 0 auto;
+	text-align: center;
+	display: inline-block;
+	padding-top: 13px;
+}
+@media (max-width:849px) {
+.pagination {
+    float: none;
+    clear: both;
+}
+}
+.pagination .arrow-button a {
+	font-size: 200%;
+    display: inline-block;
+    margin: 0;
+    padding: 0 10px;
+	text-decoration: none;
+	position: relative;
+	top: -12px;
+}
+.pagination .contain {
+    position: relative;
+    /*top: 12px;*/
+}
+/* Pagination END */
+.table-control .show-entries {
+    padding-top: 8px;
+    text-align: left;
+}
+.table-control .show-entries a.active {
+	text-decoration: none;
+    color: #6F777B;
+    cursor: default;
+}
+.table-control .extract {
+    padding-top: 8px;
+    text-align: right;
+}
+/* Go to START */
+.go-to, .go-to label, .go-to input {
+    font-size: 16px;
+    display: inline-block;
+}
+.go-to input {
+    width: 80px;
+}
+.go-to .button {
+    margin: 2px 0 0 0;
+    padding: 6px 8px 3px 8px;
+}
+/* Go to END */

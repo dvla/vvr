@@ -1,0 +1,21 @@
+@(field: model.FleetFieldViewModel)
+<div class="filter-group-background">
+    <div class="@if(field.errors.isEmpty) {form-group} else {validation group}" validationgroup=@field.name>
+        @field.errors.take(1).map{ e=>
+        <span class="validation-message" id="@{field.name}Error">@Messages(e.message)</span>
+        }
+        <span class="validation-message" validation="@field.name"></span>
+
+        <label class="form-label pull-left" for="@field.name">@Messages(field.labelName)</label>
+        <a class="clear-selected pull-right js-hidden" clear="@field.name">clear</a>
+
+        <input type="text"
+               class="form-control"
+               id="@field.name"
+               name = "@field.name"
+               validatedfield
+               autocomplete="off"
+               value="@field.value"
+               style="text-transform: uppercase;" >
+    </div>
+</div>

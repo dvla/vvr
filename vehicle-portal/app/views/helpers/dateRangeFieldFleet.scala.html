@@ -1,0 +1,69 @@
+@(field: model.FleetFieldViewModel)
+@import utils.FormUtils
+@import utils.{DateFieldSuffix => Suffix}
+
+<div class="filter-group-background " ng-controller="dateRange">
+    <div class="@if(field.isDateRangeFieldValid) {form-group} else {validation group}" validationgroup="@fieldsIds" id="prop"
+         dates-checker="@field.name" >
+
+        <div class="form-group-header">
+            <label class="form-label pull-left" for="@makeID(Suffix.MONTH_FROM)">@Messages(field.labelName)</label>
+            <a class="clear-selected pull-right js-hidden" clear="@fieldsIds
+                @for(checkboxId <- field.checkboxes) { ,@{field.name}_@{checkboxId} }" >clear</a>
+        </div>
+        @if(!field.isDateRangeFieldValid){
+        <span class="validation-message" id="motError">@Messages("vvrform.enter.a.valid.date")</span>
+        }
+        @field.errors.take(1).map{ e=>
+        <span class="validation-message" id="@{field.name}Error">@Messages(e.message)</span>
+        }
+        <span class="validation-message hidden" validation="@makeID(Suffix.MONTH_FROM)"></span>
+        <span class="validation-message hidden" validation="@makeID(Suffix.YEAR_FROM)"></span>
+        <span class="validation-message hidden" validation="@makeID(Suffix.MONTH_TO)"></span>
+        <span class="validation-message hidden" validation="@makeID(Suffix.YEAR_TO)"></span>
+        <span class="validation-message hidden" validation="@{field.name}"></span>
+
+        <p class="form-hint">For example, <br />From: 04 2013 To: 04 2014</p>
+        <div class="grid grid-1-2">
+            <div class="date-from-to" >
+                <span class="form-hint">@Messages("vvrform.from")</span>
+                @dateField(Suffix.MONTH_FROM, Suffix.YEAR_FROM, "month", 2, field)
+                @dateField(Suffix.YEAR_FROM, Suffix.MONTH_TO, "year", 4, field)
+            </div>
+        </div>
+        <div class="grid grid-1-2">
+            <div class="date-from-to" >
+                <span class="form-hint">@Messages("vvrform.to")</span>
+                @dateField(Suffix.MONTH_TO, Suffix.YEAR_TO, "month", 2, field)
+                @dateField(Suffix.YEAR_TO, "", "year", 4, field)
+            </div>
+        </div>
+        <ul class="form-group">
+            @for(checkboxId <- field.checkboxes) {
+            <li>
+                <label for="@{field.name}_@{checkboxId}" class="block-label">
+                    <input type="checkbox" name="@{field.name}.@{checkboxId}" value="true" @field.isChecked(checkboxId)
+                    id="@{field.name}_@{checkboxId}" >
+                    @Messages("vvrform."+{field.name+".include."+checkboxId})
+                </label>
+            </li>
+            }
+        </ul>
+    </div>
+</div>
+
+@dateField(suffix: String, cellJumpSufix: String, dateType: String, maxLength: Int, field: model.FleetFieldViewModel) = {
+<div class="form-group form-group-inner @cssClass(dateType)">
+    <label for="@makeID(suffix)">@label(dateType)</label>
+    <input type="text" class="form-control" validatedfield
+           name = "@makeName(suffix)" id = "@makeID(suffix)" placeholder="@placeholder(dateType)" maxlength="@maxLength" celljumptarget="@makeID(cellJumpSufix)"  digitsonly
+           value="@field.dateFieldValue(suffix, dateType)">
+</div>
+}
+
+@label(dateType:String) = { @Messages("vvrform."+dateType) }
+@cssClass(dateType:String) = {form-group-@{dateType}}
+@placeholder(dateType:String) = {@if(dateType=="month") {MM} else {YYYY}}
+@makeID(types:String) = {@field.name@FormUtils.dateFieldWithSuffix(types, "_")}
+@makeName(types:String) = {@field.name@FormUtils.dateFieldWithSuffix(types, ".")}
+@fieldsIds = {@makeID(Suffix.MONTH_FROM),@makeID(Suffix.YEAR_FROM),@makeID(Suffix.MONTH_TO),@makeID(Suffix.YEAR_TO),@{field.name}}

@@ -1,0 +1,58 @@
+.filter-proposition {
+    margin: 0 0 15px 0;
+}
+/*.filter-proposition a.menu {
+    display: block;
+    color: #005ea5;
+    cursor: pointer;
+    position: relative;
+    margin-bottom: 0.26316em;
+}*/
+@media (min-width: 640px) {
+.filter-proposition a.menu {
+	display: none;
+}
+}
+/*.filter-proposition a.menu:hover {
+	text-decoration: underline;
+}*/
+.filter-proposition a.menu:before {
+	display: inline-block;
+	font-size: 14px;
+	height: 14px;
+	padding-right: 5px;
+	vertical-align: middle;
+	content: " \25B6";
+}
+.filter-proposition a.menu.js-hidden:before {
+	padding-right: 3px;
+	content: " \25BC";
+}
+.filter-proposition a.menu .view-hide-filter:before {
+    content: "View ";
+}
+.filter-proposition a.menu.js-hidden .view-hide-filter:before {
+	content: "Hide ";
+}
+/*.filter-proposition #proposition-links-2 {
+	clear: both;
+	margin: 0;
+	padding: 0;
+}*/
+.filter-proposition .block-label {
+    margin-top: 0;
+    margin-bottom: 25px;
+    padding-left: 15px;
+    /*text-align: center;*/
+}
+.js-enabled .filter-proposition #proposition-links-2 {
+	display: none;
+}
+@media (min-width: 640px) {
+.js-enabled .filter-proposition #proposition-links-2 {
+	display: block;
+}
+}
+.js-enabled .filter-proposition #proposition-links-2.js-visible {
+	display: block;
+}

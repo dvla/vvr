@@ -1,0 +1,15 @@
+@(vehicle: model.VehicleDetailsViewModel)
+@import model.VehicleDetailsViewModel
+@import uk.gov.dvla.domain.TaxStatus
+
+<div class="grid grid-1-2">
+    <div class="inner-block">
+        <div class ="alert @if(VehicleDetailsViewModel.isTaxStatusOK(vehicle)) {success-alert} else {danger-alert}">
+            <div class="data alert-body">
+                @if(vehicle.taxStatus.isDefined){ <h2 class="bold-medium">@if( vehicle.taxStatus == Some(TaxStatus.EXPIRED)){ &#10008; @Messages("vsv.taxstatus.untaxed")} else { &#10004; @vehicle.taxStatus}</h2>
+                @if(vehicle.taxStatus != Some(TaxStatus.SORN)){<p class="bold-xsmall">@if( vehicle.taxStatus == Some(TaxStatus.EXPIRED)){ @Messages("vsv.taxstatus.expired"):  } else { @Messages("vsv.taxstatus.expires"): } @vehicle.liability</p>}
+                }else {<h2 class="bold-medium">@Messages("vsv.taxstatus.notavailable")</h2>}
+            </div>
+        </div>
+    </div>
+</div>

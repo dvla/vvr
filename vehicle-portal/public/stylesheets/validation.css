@@ -1,0 +1,72 @@
+.validation-summary {
+	border: 3px solid #df3034;
+	box-sizing: border-box;
+	padding: 1em 1em 0.25em 1em;
+	/*margin: 1em -1em;*/
+	margin: 0 -1em 1em -1em;
+	background-color: #fef7f7;
+}
+.validation-summary *:first-child {
+	margin-top: 0em;
+}
+.validation-summary ul, .validation-summary ol {
+	color: #df3034;
+}
+.validation-summary ul, .validation-summary ol {
+	padding-left: 1.5em;
+}
+.validation-summary li {
+	font-family: "nta", Arial, sans-serif;
+	font-size: 16px;
+	line-height: 1.25;
+	font-weight: 300;
+	text-transform: none;
+}
+.validation-summary h2 {
+	font-size: 24px;
+	font-weight: 700;
+}
+@media (max-width: 640px) {
+.validation-summary li {
+	font-size: 14px;
+	line-height: 1.14286;
+}
+}
+.validation-summary a {
+	color: #df3034;
+	text-decoration: none;
+}
+.validation-summary a:hover {
+	text-decoration: underline;
+}
+.validation {
+	background-color: #fef7f7;
+	border-left: 3px solid #df3034;
+	margin: 0 -1em 0.5em -1em;
+	padding: 0.75em 1em 0 1em;
+}
+.validation {
+  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+}
+.validation .validation-message {
+	color: #df3034;
+	font-family: "nta", Arial, sans-serif;
+	font-size: 16px;
+	line-height: 1.25;
+	font-weight: 300;
+	text-transform: none;
+	display: block;
+	padding-bottom: 0.5em;
+}
+
+@media (max-width: 640px) {
+.validation .validation-message {
+	font-size: 14px;
+	line-height: 1.14286;
+}
+}
+
+.hidden {
+    display:none !important;
+}

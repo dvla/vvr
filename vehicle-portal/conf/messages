@@ -1,0 +1,160 @@
+application.portal.title=DVLA Portal
+application.portal.welcome=Welcome to the DVLA Fleet Portal!
+
+search.form.title=View vehicle record
+
+# govuk template
+govuk.default.title=GOV.UK - The best place to find government services and information
+govuk.skip.to.main.content=Skip to main content
+govuk.uses.cookies.to.make.the.site.simpler.=GOV.UK uses cookies to make the site simpler.
+govuk.find.out.more.about.cookies=Find out more about cookies
+govuk.go.to.the.GOV.UK.homepage=Go to the GOV.UK homepage
+govuk.open.government.licence=Open Government Licence
+govuk.open.government.licence.v2=Open Government Licence v2.0
+govuk.all.content.is.available.under.the=All content is available under the
+govuk.except.where.otherwise.stated=except where otherwise stated
+govuk.crown.copyright=Crown copyright
+
+# main header menu
+menu.view.vehicle.record=View vehicle record
+menu.view.all.fleet.records=View all fleet records
+menu.search.again=Search again
+menu.logout=Logout
+
+# phase banner
+phase.alpha=ALPHA
+phase.this.is.a.new.service...your=This is a new service – your
+phase.feedback=feedback
+phase.will.help.us.to.improve.it.=will help us to improve it.
+
+# footer
+footer.click.to.view.this.site.in.english=Click to view this site in English
+footer.english=English
+footer.click.to.view.this.site.in.welsh=Cliciwch i weld y safle hwn yn y Gymraeg
+footer.welsh=Cymraeg
+footer.built.by.the=Built by the
+footer.driver.and.vehicle.licensing.agency=Driver & Vehicle Licensing Agency
+
+# pagination
+page.first=First
+page.last=Last
+page.next=Next Page
+page.previous=Previous Page
+
+# vehicle Search
+breadcrumb.home=Home
+breadcrumb.driving.and.transport=Driving and transport
+breadcrumb.view.vehicle.record.fleet.enquiry=View vehicle record fleet enquiry
+vvrform.view.vehicle.record=Search my fleet
+vvrform.fleet.management.vehicle.service=Fleet management vehicle service
+vvrform.to.make.an.enquiry.enter...=To make an enquiry enter your fleet reference number, vehicle registration number (number plate), and the make of vehicle.
+vvrform.fleet.number=Fleet number
+vvrform.registration.number=Registration number
+vvrform.vehicle.make=Vehicle make
+vvrform.date.of.liability=Date of liability
+vvrform.date.of.first.registration=Date of first registration
+vvrform.search=Search
+vvrform.mot=MOT date
+vvrform.month=Month
+vvrform.year=Year
+vvrform.from=From
+vvrform.to=To
+
+vvrform.the.requested.record.could.not.be.found=The requested record could not be found
+vvrform.this.vehicle.is.not.part.of.this.fleet=This vehicle is not part of this fleet
+vvrform.please.resubmit.your.vehicle.enquiry=Please resubmit your vehicle enquiry
+
+vvrform.please.check.the.form=Please check the form
+vvrform.enter.your.fleet.number=Enter your fleet number
+vvrform.enter.your.vehicle.registration.number=Enter your vehicle registration number
+vvrform.enter.your.vehicle.make=Enter your vehicle make
+
+vvrform.enter.a.valid.fleet.number=Enter a valid fleet number
+vvrform.enter.a.valid.vehicle.registration.number=Enter a valid vehicle registration number
+vvrform.enter.a.valid.vehicle.make=Enter a valid vehicle make
+vvrform.enter.a.valid.month=Enter a valid month
+vvrform.enter.a.valid.year=Enter a valid year
+vvrform.enter.a.valid.date.range=Enter a valid date range
+vvrform.enter.a.valid.date=Enter a valid date
+
+vvrform.dol.include.expired=Include expired
+vvrform.dol.include.sorn=Include SORN
+vvrform.mot.include.expired=Include expired
+vvrform.mot.include.noDateHeld=Include 'No Details Held'
+
+# view single vehicle detail
+vsv.fleet.vehicle.record=Vehicle details
+vsv.fleet.reference.number=Fleet reference number
+vsv.registration.number=Registration number
+vsv.vehicle.make=Vehicle make
+vsv.tax.class=Tax class
+vsv.date.of.first.registration=Date of first registration
+vsv.date.of.liability=Date of liability
+vsv.tax.status=Tax status
+vsv.cylinder.capacity=Cylinder capacity (cc)
+vsv.co2.emissions=CO2 Emissions
+vsv.tax.band=Tax band
+vsv.fuel.type=Fuel type
+vsv.vehicle.colour=Vehicle colour
+vsv.vehicle.mass.in.service=Mass in service (kg)
+vsv.vehicle.number.of.seats=Number of seats (includes driver)
+vsv.vehicle.standing.capacity=Standing capacity
+vsv.vehicle.revenue.weight=Revenue weight (kg)
+vsv.vehicle.wheelplan=Wheelplan
+vsv.vehicle.first.registration.uk=Date of first registration in the UK
+vsv.vehicle.vehicle.category=Vehicle category
+vsv.vehicle.body.type=Body type
+vsv.please.be.aware.that...=Please be aware that if you have taxed, made a SORN or had an MOT in the last 5 days these details may not have updated. For further information on MOT’s please visit vehicle MOT page.
+vsv.if.you.think.that.the.details.on.the.vehicle.record.are.incorrect.please.write.to=If you think that the details on the vehicle record are incorrect please write to
+vsv.addr1=CCG
+vsv.addr2=DVLA
+vsv.addr3=Swansea
+vsv.addr4=SA99 1BA
+vsv.please.include.the.incorrect.V5C.registration.certificate.for.amendment.=Please include the incorrect V5C registration certificate for amendment.
+vsv.logout=Logout
+vsv.taxstatus.notavailable= Not Available
+vsv.taxstatus.expired=Expired
+vsv.taxstatus.expires=Expires
+vsv.taxstatus.untaxed=Untaxed
+vsv.taxstatus.sorn=SORN
+vsv.model=Model
+vsv.vin=VIN/Chassis/Frame No.
+vsv.last.v5=Date of last V5C issue
+vsv.engine.number=Engine number
+
+vsv.mot.unknown=No details held by DVLA
+vsv.mot.expired=Expired: {0}
+vsv.mot.expires=Expires: {0}
+
+# view multiple vehicle details
+vfr.records.for.all.fleet.vehicle=All vehicle details
+vfr.fleet.ref.num=Fleet reference number
+vfr.vehicles.in.fleet=vehicles in your fleet
+vfr.vehicles.over.age=vehicles are over 30 months of age
+vfr.vehicle.details=View details
+vfr.vehicles.next.liability=vehicles have an expired date of liability or are due in the next 60 days
+vfr.export.vehicle.data=Export vehicle data
+vfr.csv=CSV
+vfr.reg.num=Registration number
+vfr.vehicle.make=Vehicle make
+vfr.tax.class=Tax class
+vfr.date.of.liability=Date of liability
+vfr.date.of.first.reg=Date of first registration
+vfr.num.of.vehicles=Number of vehicles
+vfr.vehicle.age=Vehicle age results
+vfr.show=Show
+vfr.entries=entries
+vfr.sorn=SORN
+vfr.vehicles.found=vehicle(s) found
+vfr.filtered.vehicledetails=Filtered vehicle details
+vfr.date.of.liability.results=Date of liability results
+# Global exception handling
+views.display.error.404.action.not.found=This page cannot be found
+views.display.error.400.badrequest=This page cannot be found
+views.display.error.session.expired=Your session has expired
+views.display.error.critical=The service is currently unavailable
+views.error.exit=Exit
+views.error.header=Error Page
+
+# temporary
+sorry.the.vehicle.could.not.be.retrieved=Sorry, the vehicle could not be retrieved

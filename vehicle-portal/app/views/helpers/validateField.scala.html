@@ -1,0 +1,17 @@
+@(searchForm: Form[model.VehicleData], fieldName: String, labelName: String, lookupName: String)
+<div class="@if(searchForm(fieldName).errors.isEmpty) {form-group} else {validation form-group}" validationgroup=@fieldName>
+    @searchForm(fieldName).errors.take(1).map{ e=>
+      <span class="validation-message" id="@{fieldName}Error">@Messages(e.message)</span>
+    }
+    <span class="validation-message" validation="@fieldName"></span>
+
+    <label class="form-label" for="@lookupName">@Messages(labelName)</label>
+
+    <input type="text"
+           class="form-control"
+           id="@lookupName"
+           name="@fieldName"
+           validatedfield
+           autocomplete="off"
+           value="@searchForm(fieldName).value" style="text-transform: uppercase;">
+</div>

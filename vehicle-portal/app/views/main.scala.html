@@ -1,0 +1,61 @@
+@(title: String, insideHeader:Html = Html(""), scripts: Html = Html(""))(content: Html)
+
+@head = {
+    <!--[if gt IE 8]><!--><link href="@routes.WebJarAssets.at(WebJarAssets.locate("govuk_elements/stylesheets/elements-page.css"))" media="screen" rel="stylesheet" type="text/css" /><!--<![endif]-->
+    <!--[if IE 6]><link href="@routes.WebJarAssets.at(WebJarAssets.locate("govuk_elements/stylesheets/elements-page-ie6.css"))" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
+    <!--[if IE 7]><link href="@routes.WebJarAssets.at(WebJarAssets.locate("govuk_elements/stylesheets/elements-page-ie7.css"))" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
+    <!--[if IE 8]><link href="@routes.WebJarAssets.at(WebJarAssets.locate("govuk_elements/stylesheets/elements-page-ie8.css"))" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
+
+    <link href="@routes.Assets.at("stylesheets/elements-override.css")" media="screen" rel="stylesheet" type="text/css" />
+    <link href="@routes.Assets.at("stylesheets/pull-floats.css")" media="screen" rel="stylesheet" type="text/css" />
+    <link href="@routes.Assets.at("stylesheets/validation.css")" media="screen" rel="stylesheet" type="text/css" />
+    <link href="@routes.Assets.at("stylesheets/ul-data-styles.css")" media="screen" rel="stylesheet" type="text/css" />
+    <link href="@routes.Assets.at("stylesheets/typeahead-fix.css")" media="screen" rel="stylesheet" type="text/css" />
+    <link href="@routes.Assets.at("stylesheets/alerts.css")" media="screen" rel="stylesheet" type="text/css" />
+    <link href="@routes.Assets.at("stylesheets/table-control.css")" media="screen" rel="stylesheet" type="text/css" />
+    <link href="@routes.Assets.at("stylesheets/table.css")" media="screen" rel="stylesheet" type="text/css" />
+    <link href="@routes.Assets.at("stylesheets/filter-block.css")" media="screen" rel="stylesheet" type="text/css" />
+    <link href="@routes.Assets.at("stylesheets/filter-accordion.css")" media="screen" rel="stylesheet" type="text/css" />
+}
+@bodyEnd = {
+<script type='text/javascript' src='@routes.Assets.at("javascripts/jquery-1.9.0.min.js")'></script>
+<script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("angular.js"))'></script>
+@*Here we inject javascripts to keep them at the end of the document*@
+@scripts
+}
+
+@afterHeader = {
+<div id="global-header-bar">
+    <div class="inner-block">
+        <div class="header-bar"></div>
+    </div>
+</div>
+<div class="outer-block">
+    <div class="inner-block">
+        <div class="phase-banner">
+            <p>
+                <strong class="phase-tag">@Messages("phase.alpha")</strong>
+                <span>@Messages("phase.this.is.a.new.service...your") <a href="#">@Messages("phase.feedback")</a> @Messages("phase.will.help.us.to.improve.it.")</span>
+            </p>
+        </div>
+    </div>
+</div>
+}
+
+@footerTop = {
+
+}
+
+@footerLinks = {
+<ul>
+    <li>
+        <a id="butEnglish" title="@Messages("footer.click.to.view.this.site.in.english")" href="javascript:__doPostBack('ctl00$butEnglish','')">@Messages("footer.english")</a>
+        &nbsp;
+        <a id="butWelsh" title="@Messages("footer.click.to.view.this.site.in.welsh")" href="javascript:__doPostBack('ctl00$butWelsh','')">@Messages("footer.welsh")</a> &nbsp;
+        @Messages("Built by the") <a href="https://dvladigital.blog.gov.uk/" target="_blank">@Messages("footer.driver.and.vehicle.licensing.agency")</a>
+    </li>
+</ul>
+}
+
+
+@govuk_template(Some(title), None, None)(head, bodyEnd, insideHeader, afterHeader, footerTop, footerLinks)(content)

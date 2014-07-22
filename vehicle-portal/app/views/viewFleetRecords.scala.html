@@ -1,0 +1,228 @@
+@(header: model.FleetHeader, fleet: model.FleetViewModel)
+@import common.PortalDateFormatter
+@import utils.IntExtensions._
+@import utils.URLEncodingUtils
+@import utils.StringExtentions._
+@import uk.gov.dvla.domain.Vehicle
+@import play.api.Play
+@import uk.gov.dvla.domain.FleetFilter
+
+@scripts= {
+<script type='text/javascript' src='@routes.Assets.at("frontend/app/app.js")'></script>
+<script type='text/javascript' src='@routes.Assets.at("frontend/app/dateRangeFields.js")'></script>
+<script type='text/javascript' src='@routes.Assets.at("frontend/app/vehicleFormValidatorService.js")'></script>
+<script type='text/javascript' src='@routes.Assets.at("frontend/app/messagesService.js")'></script>
+<script type='text/javascript' src='@routes.Assets.at("javascripts/typeahead.changed.min.js")'></script>
+<script type="text/javascript">
+     $('#mk').typeahead({
+        name: 'VehicleMakes',
+        limit: '10',
+        local: @{Html(fleet.makes)}
+     });
+</script>
+}
+
+@main(Messages("application.portal.title"), helpers.header(fleet.alertFilter), scripts) {
+<main id="wrapper" role="main" ng-app="vehicle-portal">
+    <div id="content">
+    <header class="page-header group">
+        <div class="hgroup">
+            <h1>
+                @if(fleet.activeFilter == FleetFilter.ALL) {@Messages("vfr.records.for.all.fleet.vehicle")}
+                @if(fleet.activeFilter == FleetFilter.OLD) {@Messages("vfr.vehicle.age")}
+                @if(fleet.activeFilter == FleetFilter.DUE) {@Messages("vfr.date.of.liability.results")}
+                @if(fleet.activeFilter == FleetFilter.CUSTOM) {@Messages("vfr.filtered.vehicledetails")}
+            </h1>
+            <h2 class="subtitle">@Messages("vfr.fleet.ref.num") @fleet.fleetNumber</h2>
+        </div>
+    </header>
+    @if(fleet.activeFilter != FleetFilter.CUSTOM) {
+    <!-- Alert START -->
+    <div class="alert-wrapper alert-wrapper-full-width dashboard"></div>
+    <div class="grid-wrapper alert-wrapper dashboard">
+        <div class="grid grid-1-3">
+            <div class="inner-block">
+                <div class="alert success-alert @if(fleet.alertFilter == FleetFilter.ALL) {active-alert}">
+                    <div class="alert-title">
+                        <p>@Messages("vfr.num.of.vehicles")</p>
+                    </div>
+                    <div class="data alert-body">
+                        <h2 class="bold-xlarge">@header.vehicleCount.formatUK</h2>
+
+                        <p class="bold-xsmall">@Messages("vfr.vehicles.in.fleet")</p>
+                    </div>
+                    <a href="@fleet.alertFilterUrl(FleetFilter.ALL)"></a>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-1-3">
+            <div class="inner-block">
+                <div class="alert @if(header.ageAlertCount > 0) {danger-alert} else {success-alert} @if(fleet.alertFilter == FleetFilter.OLD) {active-alert}">
+                    <div class="alert-title">
+                        <p>@Messages("vfr.vehicle.age")</p>
+                    </div>
+                    <div class="data alert-body inactive-alert-body">
+                        <h2 class="bold-xlarge">@header.ageAlertCount.formatUK</h2>
+
+                        <p class="bold-xsmall">@Messages("vfr.vehicles.over.age")</p>
+                    </div>
+                    <a href="@fleet.alertFilterUrl(FleetFilter.OLD)"></a>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-1-3">
+            <div class="inner-block">
+                <div class="alert @if(header.ageAlertCount > 0) {danger-alert} else {success-alert} @if(fleet.activeFilter == FleetFilter.DUE) {active-alert}">
+                    <div class="alert-title">
+                        <p>@Messages("vfr.date.of.liability")</p>
+                    </div>
+                    <div class="data alert-body inactive-alert-body">
+                        <h2 class="bold-xlarge">@header.liabilityAlertCount.formatUK</h2>
+
+                        <p class="bold-xsmall">@Messages("vfr.vehicles.next.liability")</p>
+                    </div>
+                    <a href="@fleet.alertFilterUrl(FleetFilter.DUE)"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Alert END -->
+    }
+    <article class="inner-block">
+        <!-- Filter Results START -->
+        <div class="grid grid-1-3">
+            <!--<p><a href="#">Back</a></p>-->
+            <div class="filter-block">
+                <!-- Filter Results START -->
+                <div class="filter-proposition">
+                    <a href="#proposition-links-2" class="js-header-toggle menu block-label"><span class="view-hide-filter"></span>filters</a>
+                    <div id="proposition-links-2">
+                        @helpers.leftFilterPanel(fleet)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Filter Results END -->
+        <div class="grid grid-2-3">
+            <!-- Number of entries START -->
+            <div class="data entries">
+                <h2 class="bold-xlarge">@fleet.vehiclesFound</h2>
+                <p class="bold-xsmall">@Messages("vfr.vehicles.found")</p>
+            </div>
+            <!-- Number of entries END -->
+            <!-- Show entries / download START -->
+            <div class="table-control">
+                <span class="show-entries pull-left">
+                    <p>Show
+                    @for(page <- fleet.entriesLimitPages){
+                        <a @if(page.selectedPage){class="active"} href="@page.pageUrl">@page.pageName</a>@if( page != fleet.entriesLimitPages.last){,}
+                        }
+                    entries</p>
+                </span>
+                <span class="extract pull-right">
+                    <p>Extract data as: <a href="@fleet.exportUrl">CSV</a></p>
+                </span>
+
+                <div class="pagination">
+                    <span class="arrow-button pull-left">
+                        @if(fleet.previous.showPage){
+                        <a href="@fleet.previous.pageUrl">&#8249;</a>
+                        }
+                    </span>
+                    <span class="arrow-button pull-right">
+                        @if(fleet.next.showPage){
+                        <a href="@fleet.next.pageUrl">&#8250;</a>
+                        }
+                    </span>
+                    @if(fleet.noOfPages > 1){
+                    <span class="contain">Page @fleet.pageNo of @fleet.noOfPages</span>
+                    }
+                </div>
+
+
+            </div>
+            <!-- Show entries / download END -->
+
+            <!-- Results Table START -->
+            <table>
+                <thead>
+                <tr>
+                    <th>@Messages("vfr.reg.num")</th>
+                    <th>@Messages("vfr.vehicle.make")</th>
+                    <th>@Messages("vfr.tax.class")</th>
+                    <th>@Messages("vfr.date.of.liability")</th>
+                    <th>@Messages("vfr.date.of.first.reg")</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                @for(vehicle <- fleet.vehicles){
+                <tr>
+                    <td>
+                        <a href="@vehicle.url(fleet.params.data)">@vehicle.registrationNumber</a>
+                    </td>
+                    <td>@vehicle.make</td>
+                    <td>@vehicle.taxCode</td>
+                    <td>@vehicle.liability</td>
+                    <td>@vehicle.firstRegistration</td>
+                </tr>
+                }
+                </tbody>
+            </table>
+            <!-- Results Table END -->
+
+            <!-- Pagination START -->
+            <div class="table-control table-footer">
+
+                @if(!fleet.pages(0).selectedPage){
+                    <a href="@fleet.pages(0).pageUrl" class="pull-left">
+                        <span class="first arrow">
+                            <span class="arrow-button">&laquo;</span>
+                            <span class="contain">
+                                <span class="link">@Messages(fleet.pages(0).pageName)</span>
+                            </span>
+                        </span>
+                    </a>
+                }
+                @if(!fleet.pages(1).selectedPage){
+                    <a href="@fleet.pages(1).pageUrl" class="pull-right">
+                        <span class="last arrow">
+                            <span class="arrow-button">&raquo;</span>
+                            <span class="contain">
+                                <span class="link">@Messages(fleet.pages(1).pageName)</span>
+                            </span>
+                        </span>
+                    </a>
+                }
+                <div class="pagination">
+                    <span class="arrow-button pull-left">
+                        @if(fleet.previous.showPage){
+                        <a href="@fleet.previous.pageUrl">&#8249;</a>
+                        }
+                    </span>
+                    <span class="arrow-button pull-right">
+                        @if(fleet.next.showPage){
+                        <a href="@fleet.next.pageUrl">&#8250;</a>
+                        }
+                    </span>
+                    @if(fleet.noOfPages > 1){
+                    <span class="contain">Page @fleet.pageNo of @fleet.noOfPages</span>
+                    }
+                </div>
+
+                <!--
+                <form action="" method="post" class="form-group go-to">
+                    <label class="form-label" for="goTo">Go to page</label>
+                    <input type="text" class="form-control" id="goTo" style="text-transform: uppercase;">
+                    <button type="submit" name="" value="Search" onclick="" id="MainContent_butSearch" class="button">Go</button>
+                </form>
+                -->
+            </div>
+            <!-- Pagination END -->
+        </div>
+    </article>
+    <!-- / .inner-block -->
+    </div>
+    <!-- / #content -->
+</main>
+}

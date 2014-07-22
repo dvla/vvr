@@ -1,0 +1,52 @@
+@(field: model.FleetFieldViewModel)
+@import utils.FormUtils
+@import utils.{DateFieldSuffix => Suffix}
+
+<div class="filter-group-background">
+    <div class="@if(field.errors.isEmpty) {form-group} else {validation group}" validationgroup="@fieldsIds" >
+        <div class="form-group-header">
+            <label class="form-label pull-left" for="@{field.name}_month">@Messages(field.labelName)</label>
+            <a class="clear-selected pull-right js-hidden" clear="@fieldsIds
+                @for(chxId <- field.checkboxes) { ,@{field.name}_@{chxId} }" >clear</a>
+        </div>
+        @field.errors.take(1).map{ e=>
+        <span class="validation-message" id="@{field.name}Error">@Messages(e.message)</span>
+        }
+        <span class="validation-message" validation="@{field.name}_month"></span>
+        <span class="validation-message" validation="@{field.name}_year"></span>
+
+        <p class="form-hint">For example, 04 2014</p>
+        <div class="grid grid-1-2">
+            <div class="date-from-to" >
+                <span class="form-hint"></span>
+                <div class="form-group form-group-inner form-group-month">
+                    <label for="@{field.name}_month">Month</label>
+                    <input type="text" class="form-control" validatedfield
+                           name = "@{field.name}.month" id = "@{field.name}_month" placeholder="MM" maxlength="2" celljumptarget="@{field.name}_year"  digitsonly>
+                </div>
+                <div class="form-group form-group-inner form-group-year">
+                    <label for="@{field.name}_year">Year</label>
+                    <input type="text" class="form-control" validatedfield
+                           name = "@{field.name}.year" id = "@{field.name}_year" placeholder="YYYY" maxlength="4"  digitsonly>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-1-2">
+        </div>
+        <ul class="form-group">
+            @for(chxId <- field.checkboxes) {
+            <li>
+                <label for="@{field.name}_@{chxId}" class="block-label">
+                    <input type="checkbox" name="case_type[]" value="true" @field.isChecked(chxId)
+                       id="@{field.name}_@{chxId}" >
+                    @Messages("vvrform."+{field.name+".include."+chxId})
+                </label>
+            </li>
+            }
+        </ul>
+    </div>
+</div>
+
+@makeID(types:String) = {@field.name@FormUtils.dateFieldWithSuffix(types, "_")}
+@makeName(types:String) = {@field.name@FormUtils.dateFieldWithSuffix(types, ".")}
+@fieldsIds = {@makeID(Suffix.MONTH),@makeID(Suffix.YEAR)}

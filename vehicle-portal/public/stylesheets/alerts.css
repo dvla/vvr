@@ -1,0 +1,194 @@
+/* Alert Background START */
+.alert-wrapper {
+    position: relative;
+    z-index: 10;
+    display: block;
+    padding: 30px 15px 60px 15px;
+    margin-top: -3em;
+}
+@media (max-width: 640px) {
+.alert-wrapper {
+    padding: 15px 0;
+}
+}
+.alert-wrapper.alert-wrapper-full-width {
+    position: absolute;
+    background-color: #F8F8F8;
+    z-index: 5;
+    display: block;
+    left: 0;
+    width: 100%;
+    padding: 0;
+}
+@media (max-width: 640px) {
+.alert-wrapper.alert-wrapper-full-width {
+    display: none !important;
+    visibility: hidden !important;
+}
+}
+.alert-wrapper.alert-wrapper-full-width.dashboard {
+    min-height: 255px;
+}
+.alert-wrapper.alert-wrapper-full-width.single-view-alert {
+    min-height: 135px;
+}
+/*.alert-wrapper.alert-wrapper-full-width.single-view-alert.danger-alert-height {
+    min-height: 160px;
+}
+.danger-alert-height .alert {
+    min-height: 105px;
+    height: 105px;
+}*/
+/* Alert Background END */
+/* Alert Box START */
+.alert {
+    position: relative;
+    color: #000000;
+    background-color: #FFFFFF;
+    margin: 0;
+    padding: 0;
+    min-height: 78px;
+}
+.dashboard .alert a {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 15;                /* raises anchor tag above everything else in div */
+    background-color: white;    /* Workaround to make clickable in IE */
+    opacity: 0;                 /* Workaround to make clickable in IE */
+    filter: alpha(opacity=0);   /* Workaround to make clickable in IE */
+}
+.dashboard .alert a:hover {
+    cursor: pointer;
+    opacity: .25;
+}
+.single-view-alert .alert, .single-view-alert .alert a {
+    color: #FFFFFF;
+}
+.single-view-alert .alert a:hover {
+    text-decoration: underline;
+}
+.single-view-alert .alert .alert-body .grid .inner-block {
+    text-align: center;
+}
+.alert p {
+    margin-bottom: 0.26316em
+}
+.alert-title {
+    text-align: center;
+    background-color: #DEE0E2;
+    /*padding: 15px 15px 10px 15px;*/
+    padding: 18px 15px 15px 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+.alert-title p {
+    margin: 0;
+}
+.alert-body {
+    text-align: center;
+    padding: 20px 20px 5px 20px;
+}
+.alert-body:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.single-view-alert .alert-body {
+    padding: 10px 10px 5px 10px;
+}
+@media (max-width: 769px) {
+.alert-body {
+    padding-top: 10px;
+}
+}
+@media (max-width: 640px) {
+.alert-body.inactive-alert-body {
+    display: none !important;
+    visibility: hidden !important;
+}
+}
+/* Dashboard Alerts START */
+.dashboard .alert {
+    min-height: 195px;
+    height: 195px;
+}
+@media (max-width: 769px) {
+.dashboard .alert {
+    min-height: 205px;
+    height: inherit;
+}
+}
+@media (max-width: 640px) {
+.dashboard .alert, .single-view-alert .alert {
+    min-height: 30px;
+    height: inherit;
+}
+}
+/* Dashboard Alerts END */
+/* Success START */
+.alert.success-alert {
+    background-color: #28A197;
+}
+.alert.success-alert .alert-title {
+    background-color: #28A197;
+    color: #FFFFFF;
+}
+.alert.success-alert .alert-body {
+    color: #FFFFFF;
+}
+/* Success END */
+/* Warning START */
+.alert.warning-alert {
+    background-color: #F47738;
+}
+.alert.warning-alert .alert-title {
+    background-color: #F47738;
+    color: #FFFFFF;
+}
+.alert.warning-alert .alert-body {
+    color: #FFFFFF;
+}
+/* Warning END */
+/* Danger START */
+.alert.danger-alert {
+    background-color: #DF3034;
+}
+.alert.danger-alert .alert-title {
+    background-color: #DF3034;
+    color: #FFFFFF;
+}
+.alert.danger-alert .alert-body {
+    color: #FFFFFF;
+}
+/* Danger END */
+/* Active states START */
+.alert.success-alert.active-alert .alert-title {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+.alert.danger-alert.active-alert .alert-title {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+/* Active states END */
+/* Alert Box END */
+/* Over wright 'data font size' that's in elements-page.css file
+   so large numbers can respond correctly and fit in the alert boxes START */
+@media (max-width: 769px) {
+.alert-body .bold-xlarge {
+	font-size: 32px;
+	line-height: 1.09375;
+}
+}
+/* Over wright 'data font size' that's in elements-page.css file
+   so large numbers can respond correctly and fit in the alert boxes END */
+/* Grid over wright START */
+@media (max-width: 640px) {
+.alert-wrapper .grid-1-3, .alert-wrapper .grid-1-2 {
+    margin-bottom: 15px;
+ }
+.alert-wrapper .grid-1-3:last-child {
+    margin-bottom: 0;
+}
+}
+/* Grid over wright End */

@@ -1,0 +1,29 @@
+@(errorMessage: String, path: String)(implicit lang: Lang)
+
+@main(Messages("application.portal.title")) {
+<main id="wrapper" role="main">
+    <div id="content">
+        <div id="global-breadcrumb" class="header-context">
+            <nav role="navigation">
+                <ol class="group">
+                    <li><a href="https://www.gov.uk/service-manual/">@Messages("breadcrumb.home")</a></li>
+                    <li><a href="#">@Messages("breadcrumb.driving.and.transport")</a></li>
+                    <li><a href="#">@Messages("breadcrumb.view.vehicle.record.fleet.enquiry")</a></li>
+                </ol>
+            </nav>
+        </div>
+        <header class="page-header group">
+            <div class="hgroup">
+                <h1>@Html(Messages("views.error.header"))</h1>
+                <h2 class="subtitle" data-journey="view-driver-details:failed">@Html(Messages(errorMessage))</h2>
+            </div>
+        </header>
+        <article class="inner-block">
+            <div class="text">
+                <a href="https://www.gov.uk/" onclick="" id="" class="button">@Messages("views.error.exit")</a>
+            </div>
+        </article>
+    </div>
+    <!-- / #content -->
+</main>
+}

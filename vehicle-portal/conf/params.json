@@ -1,0 +1,14 @@
+{
+    "vehicleEnquiryService": {
+        "url": "http://localhost:9200/"
+    },
+    "referenceEnquiryService": {
+        "url": "http://localhost:9400/"
+    },
+    "vehicleFilterService": {
+        "url": "http://localhost:9300/vehicles"
+    },
+    "logout": {
+        "url": "/"
+    }
+}
